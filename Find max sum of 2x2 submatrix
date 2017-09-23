@@ -1,0 +1,36 @@
+package example;
+
+import java.util.*;
+
+public class Example {
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String [] dimentionsofTheMatrix = sc.nextLine().split(", ");
+        int row = Integer.parseInt(dimentionsofTheMatrix[0]);
+        int col = Integer.parseInt(dimentionsofTheMatrix[1]);
+        int bestSum=Integer.MIN_VALUE,startRow=0,startCol=0;
+        int [][] matrix = new int[row][col];
+        for (int i = 0; i < row; i++) {
+            String [] s = sc.nextLine().split(", ");
+            for (int j = 0; j < col; j++) {
+                matrix[i][j] = Integer.parseInt(s[j]);
+            }
+        }
+        
+        for (int i = 0; i < row-1; i++) {
+            for (int j = 0; j < col-1; j++) {
+                int sum = matrix[i][j]+matrix[i+1][j]+matrix[i][j+1]+matrix[i+1][j+1];
+                if (bestSum<sum) {
+                    bestSum = sum;
+                    startRow = i;
+                startCol = j;
+                }
+                
+            }
+        }
+        System.out.println(matrix[startRow][startCol] +" "+ matrix[startRow][startCol+1]);
+        System.out.println(matrix[startRow+1][startCol] + " " + matrix[startRow+1][startCol+1]);
+        System.out.println(bestSum);
+    }
+}
