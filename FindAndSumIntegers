@@ -1,0 +1,22 @@
+package example;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Example {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Optional<Integer> opt = Arrays.stream(sc.nextLine().split("\\s+")).filter(x->isNumber(x)).map(Integer::valueOf)
+                .reduce((x,y)->x+y);
+        if (opt.isPresent()) {
+            System.out.println(opt.get());
+        }else{
+            System.out.println("no match");
+        }
+    }
+
+    private static boolean isNumber(String x) {
+        Matcher m = Pattern.compile("\\-?\\d+").matcher(x);
+        return m.find();
+    }
+}
