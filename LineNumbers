@@ -1,0 +1,17 @@
+package example;
+import java.io.*;
+public class Example {
+    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
+         String path = "C:\\data\\file.txt";
+         String outPath = "C:\\data\\file2.txt";
+         try(BufferedReader in = new BufferedReader(new FileReader(path)); 
+                 PrintWriter out = new PrintWriter(new FileWriter(outPath))){
+             String line = in.readLine();
+             int count = 0;
+             while(line!=null){
+                 count++;
+                 out.println(count+". "+line);
+                 line = in.readLine();
+             } 
+         }
+    }
