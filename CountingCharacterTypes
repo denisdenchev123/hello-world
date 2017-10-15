@@ -1,0 +1,48 @@
+package example;
+import java.io.*;
+public class Example {
+    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
+         String path = "C:\\data\\file.txt";
+         String outPath = "C:\\data\\file2.txt";
+         try(BufferedReader in = new BufferedReader(new FileReader(path)); 
+                 PrintWriter out = new PrintWriter(new FileWriter(outPath))){
+             String line = in.readLine();
+             int vowels=0;
+             int cons =0;
+             int punc=0;
+             
+             while(line!=null){
+                 String toUpperCase = line.toLowerCase();
+                 for (char c : toUpperCase.toCharArray()) {
+                     switch (c) {
+                         case 'a':
+                         case 'e':
+                         case 'u':
+                         case 'o':
+                         case 'i':
+                             vowels++;
+                             break;
+                         case '!':
+                         case '?':
+                         case '.':
+                         case ',':
+                             punc++;
+                             break;
+                         default:
+                             cons++;
+                             break;
+                     }
+                     if (c==' ') {
+                         cons--;
+                     }
+                 }
+                 out.println("Vowels: "+vowels);
+                 out.println("Consonants: "+cons);
+                 out.println("Punctuation: "+punc);
+                 line = in.readLine();
+             }
+             
+         }
+    }
+
+}
